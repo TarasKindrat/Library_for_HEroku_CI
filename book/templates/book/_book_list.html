@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hi, librarian!!</title>
+</head>
+<body>
+{% if book_list %}
+<h1>Hi, your books:</h1>
+<table>
+    <thead>
+        <tr>
+            <td><h2>ID</h2></td>
+            <td><h2>Name</h2></td>
+            <td><h2>Description</h2></td>
+            <td><h2>Count</h2></td>
+            <td><h2>Author</h2></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in book_list %}
+            <tr>
+                <td>{{book.id}}</td>
+                <td><h3>{{book.name}}</h3></td>
+                <td>{{book.description}}</td>
+                <td>{{book.count}}</td>
+                {% for author in book.authors.all %}
+                    <td>{{author.name}}, {{author.surname}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h1> Book list is empty!</h1>
+{% endif %}
+</body>
+</html>
+

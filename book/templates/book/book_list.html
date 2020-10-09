@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+New books in our library
+{% endblock %}
+
+{% block content-header %}
+<div class="collection-header">
+    <h2 class="collection-title">Our new books</h2>
+</div>
+{% endblock %}
+{% block content%}
+<div class="collections">
+    {% if book_list %}
+    {% for book in book_list %}
+    <div class="collection-item-outer">
+        <div class="collection-item">
+            <div class="collection-text">
+                <div class="line">
+
+                    <h3><a href="/book/get_by_id/{{book.id}}">{{book.name}}</a></h3>  
+                    {% for author in book.authors.all %}
+                    <h4><small><a href="/author/get_by_id/{{author.id}}">{{author.name}} {{author.surname}}</a></small></h4>
+                    {% endfor %}
+
+                   
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="collection-item-outer">
+        <div class="collection-item">
+            <div class="collection-text">
+                <h3> Book list is empty!</h3>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+library {{book_by_id.name}}
+{% endblock %}
+
+{% block content-header %}  
+
+<div class="collection-header">
+    {% if book_by_id %}
+    <h2 class="collection-title">{{book_by_id.name}}</h2>
+    {% for author in book_by_id.authors.all %}
+    <h2><small><a href="/author/get_by_id/{{author.id}}">{{author.name}} {{author.surname}}</a></small></h2>
+    {% endfor %}
+    {% else %}
+    <h2 > book was not found!</h2>
+    {% endif %}
+</div>
+{% endblock %}
+{% block content%}
+<div class="collections">
+
+    <div class="collection-item-outer">
+        <div class="collection-item">
+            <div class="collection-text">
+                {% if book_by_id %}
+                <p>book id: {{book_by_id.id}}</p>
+                <p>{{book_by_id.description}}</p>
+                <p> count: {{book_by_id.count}}</p>
+
+                {% else %}
+                <p> ----------------------------------------------<p>
+                 {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

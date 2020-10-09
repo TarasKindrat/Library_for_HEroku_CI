@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+library all authors
+{% endblock %}
+
+{% block content-header %}  
+<div class="collection-header">
+    <h2 class="collection-title">All Authors in our Library</h2>
+</div>
+{% endblock %}
+
+{% block content%}
+<div class="collections">
+    {% for author in author_list %}
+    <div class="collection-item-outer">
+        <div class="collection-item">
+            <div class="collection-text">
+                 
+
+                    <h3><a href="/author/get_by_id/{{author.id}}">{{author.name}} {{author.surname}}</a></h3>  
+                                       
+                
+                <br>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

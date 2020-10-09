@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+all orders of library
+{% endblock %}
+
+{% block content-header %}
+<div class="collection-header">
+	<h2 class="collection-title">all orders</h2>
+</div>
+{% endblock %}
+{% block content%}
+<div class="collections">
+
+	{% for order in orders_list %}
+	<div class="collection-item-outer">
+		<div class="collection-item">
+			<div class="collection-text">
+				
+					<h3><a href="/order/get_by_id/{{order.id}}">order id: {{order.id}} 
+					</a></h3>  
+				
+				<br>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	{% endfor %}
+</div>
+{% endblock %}

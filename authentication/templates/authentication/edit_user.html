@@ -1,0 +1,12 @@
+{% extends 'base_form.html' %}
+
+{% block body %}
+  <div class="container">
+    <h2>Edit user property</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% include 'includes/form.html' %}
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+{% endblock %}

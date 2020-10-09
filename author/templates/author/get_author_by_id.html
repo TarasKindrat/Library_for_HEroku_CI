@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+library author
+{% endblock %}
+
+{% block content-header %}  
+
+<div class="collection-header">
+    {% if author_by_id %}
+    <h2 class="collection-title">{{author_by_id.name}} {{author_by_id.surname}}</h2>
+
+    {% else %}
+    <h2 > book was not found!</h2>
+    {% endif %}
+</div>
+{% endblock %}
+{% block content%}
+<div class="collections">
+
+    <div class="collection-item-outer">
+        <div class="collection-item">
+            <div class="collection-text">
+                {% if author_by_id %}
+                    <p>Author id: {{author_by_id.id}}</p>
+
+                    {% if books %}
+                        <p> books:</p>
+                        {% for book in books %}
+                            <h3><a href="/book/get_by_id/{{book.id}}"> {{book.name}} </a></h3>
+                        {% endfor %}
+                        {% else %}
+                            <p> Author don't add any book yet to our library</p>
+                    {% endif %}
+                {% else %}
+                    <p> ----------------------------------------------<p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

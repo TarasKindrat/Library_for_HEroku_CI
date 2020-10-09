@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+library order
+{% endblock %}
+
+{% block content-header %}  
+
+<div class="collection-header">
+    {% if order %}
+        <h2 class="collection-title"><small>order id: {{order.id}} by </small> <a href="/authentication/get_by_id/{{user.id}}/"> {{user.first_name}} {{user.middle_name}} {{user.last_name}}</a> </h2>
+    
+    {% else %}
+        <h2>order {{order.id}} was not found!</h2>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{% block content%}
+<div class="collections">
+    <div class="collection-item-outer">
+        <div class="collection-item">
+            <div class="collection-text">
+                {% if order %}
+                    <h3><a href="/book/get_by_id/{{book.id}}/">{{book.name}}</a></h3>
+                    {% for author in authors_list %}
+                        <h4><small><a href="/author/get_by_id/{{author.id}}/"> {{author.name}} {{author.surname}}</a></small></h2>
+                    {% endfor %}
+                    <p>book taken: {{order.created_at}}</p>
+                    <p>must be returned: {{order.plated_end_at}}<p>
+                {% else %}
+                    <p> ------------------------------------</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

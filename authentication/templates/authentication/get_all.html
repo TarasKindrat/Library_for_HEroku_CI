@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+users of our library
+{% endblock %}
+
+{% block content-header %}
+<form action="/authentication/signup/" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-outline-danger btn-lg btn-block" type="submit" value="Create user"/>
+        </form>
+<div class="collection-header">
+	<h2 class="collection-title">Our VIP users</h2>
+</div>
+{% endblock %}
+{% block content%}
+
+<!--<a href="/authentication/signup/" class="btn btn-primary">Create user</a> -->
+<div class="collections">
+
+	{% for c_user in users_list %}
+	<div class="collection-item-outer">
+		<div class="collection-item">
+			<div class="collection-text">
+				<div class="line">
+					<h3><a href="/authentication/get_by_id/{{c_user.id}}">{{c_user.first_name}} {{c_user.middle_name}} {{c_user.last_name}}</a></h3>
+					<h4><small>{{c_user.email}}</small></h4>
+					   <!--<a href="/authentication/get_by_id/{{user.id}}/update/" class="btn btn-primary">Update user</a> -->
+					<!--	<a href="/authentication/get_by_id/{{user.id}}/delete/" class="btn btn-primary">Delete user</a> -->
+					{% if user.role == 1 %}
+					<ul>
+						<li>
+							<a href="/authentication/get_by_id/{{c_user.id}}/update/" class="btn btn-primary">Update user</a>
+						</li>
+						<li>
+							------------------
+						</li>
+						<li>
+							<form action="/authentication/get_by_id/{{c_user.id}}/delete/" method="POST">
+                              {% csrf_token %}
+                               <input class="btn btn-primary" type="submit" value="Delete user"/>
+                            </form>
+						</li>
+					</ul>
+					    <!--<a href="/authentication/get_by_id/{{user.id}}/delete/" class="btn btn-primary">Delete user</a>-->
+					{% endif %}
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	{% endfor %}
+</div>
+{% endblock %}
