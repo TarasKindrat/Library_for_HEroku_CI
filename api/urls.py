@@ -16,7 +16,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('user/<int:pk>/order/', views.OrderDetail.as_view(), name='order_detail'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('/accounts/profile/', views.login_redirect, name='login_redirect'),
+    path('accounts/profile/', views.login_redirect, name='login_redirect'),
     path('login/', auth_views.LoginView.as_view(redirect_authenticated_user=True), name='login')
     # path('user/<int:id>/order/', views.orderDetail_dec, name='order_detail'),
     # path('user/<int:id>/order/update', views.orderUpdate, name='order_detail'),
